@@ -313,3 +313,5 @@ tags
 
 # End of https://www.gitignore.io/api/vim,sass,venv,django,python,virtualenv,pycharm+all,visualstudiocode
 
+# settings.py
+settings.py
