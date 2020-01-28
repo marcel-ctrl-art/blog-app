@@ -3,6 +3,8 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.PostListView.as_view(), name="posts_list"),
+    path('', views.PostListView.as_view(), name="home"),
     path('post/<int:id>/', views.PostDetailView.as_view(), name="post_detail"),
+    path('post/new/', views.PostDetailView.as_view(), name="post_new"),
+
 ]
