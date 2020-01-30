@@ -89,5 +89,17 @@ class DeletePostView(View):
 
         return render(request, template_name)
 
-    def post(self, request):
-        pass
+    def post(self, request, id):
+        template_name = "post_delete.html"
+        post_to_del = get_object_or_404(Post, pk=id)
+        creator = post.author.username
+
+        if request.author.is_authenticated and request.author.username == creator:
+            post_to_del.delete()
+
+        ctx = {
+            "post_to_del": post_to_del,
+            "creator": creator
+        }
+
+        return render(request, template_name, ctx)
