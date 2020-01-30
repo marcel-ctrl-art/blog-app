@@ -1,4 +1,4 @@
-### A simple django blog application that allows for creating, reading, updating & deleteng posts.
+### A simple django blog application that allows for creating, reading, updating & deleting posts.
 
 Technologies used:
 ```python```
