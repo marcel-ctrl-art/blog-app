@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -39,12 +40,54 @@ class CreatePostView(View):
         form = NewPostForm(request.POST)
 
         if form.is_valid():
-            title = form.cleaned_data['title']
-            text = form.cleaned_data['text']
-            author = form.cleaned_data['author']
+            title = form.cleaned_data["title"]
+            text = form.cleaned_data["text"]
+            author = form.cleaned_data["author"]
 
             new_post = Post.objects.create(title=title, text=text, author=author)
             new_post.save()
 
             return redirect(f"/post/{new_post.pk}")
 
+
+class EditPostView(View):
+    def get(self, request, id):
+        post = get_object_or_404(Post, pk=id)
+        template_name = "edit_post.html"
+        msg = "Edit your post"
+        form = NewPostForm(instance=post)
+        ctx = {
+            "msg": msg,
+            "form": form,
+            }
+        return render(request, template_name, ctx)
+
+    def post(self, request, id):
+        post = get_object_or_404(Post, pk=id)
+        template_name = "edit_post.html"
+        form = NewPostForm(request.POST, instance=post)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            messages.success(request, "You successfully updated the post")
+            ctx = {"form": form}
+            return redirect(f"/post/{post.pk}")
+
+        else:
+            ctx = {
+                "form": form,
+                "error": "The form was not updated successfully. Please enter in a title and content",
+            }
+            return render(request, template_name, ctx)
+
+
+class DeletePostView(View):
+    def get(self, request, id):
+        post_to_del = get_object_or_404(Post, pk=id)
+        template_name = "post_delete.html"
+
+        return render(request, template_name)
+
+    def post(self, request):
+        pass
