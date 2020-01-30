@@ -1,6 +1,10 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
+from django.views.generic import CreateView
+
+from .forms import NewPostForm
 from .models import Post
 
 
@@ -23,3 +27,24 @@ class PostDetailView(View):
         post = get_object_or_404(Post, pk=id)
         ctx = {"post": post}
         return render(request, template_name, ctx)
+
+
+class CreatePostView(View):
+    def get(self, request):
+        template_name = "add_new_post_form.html"
+        form = NewPostForm()
+        return render(request, template_name, {"form": form})
+
+    def post(self, request):
+        form = NewPostForm(request.POST)
+
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            text = form.cleaned_data['text']
+            author = form.cleaned_data['author']
+
+            new_post = Post.objects.create(title=title, text=text, author=author)
+            new_post.save()
+
+            return redirect(f"/post/{new_post.pk}")
+
