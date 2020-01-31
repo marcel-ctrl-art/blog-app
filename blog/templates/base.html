@@ -17,12 +17,20 @@
       <a href="{% url 'post_new' %}">New Post</a>
     </div>
   </header>
+  {% if user.is_authenticated %}
+  <p>Howdy {{ user.username }}!</p>
+  <a href="{% url 'logout' %}">logout</a>
+  {% else %}
+  <p>You are not loged in.</p>
+  <a href="{% url 'login' %}">login</a>
+  {% endif %}
   <section>
     {% block content %}
+
     {% endblock %}
   </section>
 </main>
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<scrip src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></scrip>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </html>
