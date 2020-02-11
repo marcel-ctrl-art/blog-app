@@ -90,16 +90,16 @@ class DeletePostView(View):
         return render(request, template_name, ctx)
 
     def post(self, request, id):
-        template_name = "post_delete.html"
         post_to_del = get_object_or_404(Post, pk=id)
 
         if request.POST.get("delete"):
             post_to_del.delete()
-            msg = "Yor post has been deleted."
+            return redirect("/post/delete_completed/")
 
-        ctx = {
-            "post_to_del": post_to_del,
-            "msg": msg,
-        }
+        elif request.POST.get("no_delete"):
+            return redirect("/")
 
-        return render(request, template_name, ctx)
+class DeletedPostView(View):
+    def get(self, request):
+        template_name = "post_delete_completed.html"
+        return render(request, template_name)
