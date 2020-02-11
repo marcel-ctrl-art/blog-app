@@ -8,3 +8,4 @@ Technologies used:
 ```HTML```
 ```CSS```
 ```Bootstrap```
+```Postgresql```
