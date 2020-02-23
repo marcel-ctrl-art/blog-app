@@ -14,16 +14,17 @@
       <h1><a href="/">Math Blog</a></h1>
     </div>
     <div class="nav-right">
-      <a href="{% url 'post_new' %}">New Post</a>
+      <a href="{% url 'post_new' %}">+ New Post</a>
     </div>
   </header>
   {% if user.is_authenticated %}
   <p>Howdy {{ user.username }}!</p>
-  <a href="{% url 'logout' %}">logout</a>
+  <a class="btn btn-outline-secondary" href="{% url 'logout' %}">Logout</a>
   {% else %}
   <p>You are not loged in.</p>
-  <a href="{% url 'login' %}">login</a>
+  <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>
   {% endif %}
+  <hr>
   <section>
     {% block content %}
 
