@@ -12,7 +12,7 @@ Technologies used:
 * ```Bootstrap```
 * ```Postgresql```
 
-## Instalation/ Set up
+## Installation/ Set up
 
 * Install pipenv using pip: `pip installl pipenv`
 * Run virtual environment: `pipenv shell`
