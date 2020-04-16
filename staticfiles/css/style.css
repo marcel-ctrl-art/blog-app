@@ -1,0 +1,36 @@
+* {
+    font-family: normal 100% sans-serif;
+}
+
+hr {
+    background: #999;
+}
+
+}
+body {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 18px;
+    line-height: 1.4;
+    font-family: sans-serif;
+}
+
+header {
+    border-bottom: 1px solid #999;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    display: flex;
+}
+
+.nav-left {
+    margin-right: auto;
+}
+
+.nav-right {
+    display: flex;
+    padding-top: 2rem;
+}
+
+.post-entry {
+    margin-bottom: 2rem;
+}
