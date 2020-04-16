@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.template.context_processors import csrf
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -11,14 +12,17 @@ from .models import Post
 
 class PostListView(View):
     def get(self, request):
-        template_name = "posts_list.html"
-        posts = Post.objects.all().order_by("created_at")
+        template_name = 'posts_list.html'
+        posts = Post.objects.all().order_by('created_at')
         paginator = Paginator(posts, 5)
-        page = request.GET.get("page")
+        page = request.GET.get('page')
         posts = paginator.get_page(page)
         ctx = {
-            "posts": posts
+            'posts': posts,
         }
+
+        ctx.update(csrf(request))
+
         return render(request, template_name, ctx)
 
 
@@ -59,7 +63,7 @@ class EditPostView(View):
         ctx = {
             "msg": msg,
             "form": form,
-            }
+        }
         return render(request, template_name, ctx)
 
     def post(self, request, id):
