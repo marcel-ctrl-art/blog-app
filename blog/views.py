@@ -103,7 +103,23 @@ class DeletePostView(View):
         elif request.POST.get("no_delete"):
             return redirect("/")
 
+
 class DeletedPostView(View):
     def get(self, request):
         template_name = "post_delete_completed.html"
         return render(request, template_name)
+
+
+class SearchPostView(View):
+    def get(self, request):
+        template_name = 'ajax_search.html'
+
+        return render(request, template_name)
+
+    def post(self, request):
+        template_name = 'ajax_search.html'
+        search_text = request.POST.get('search_text')
+        posts = Post.objects.filter(title__contains=search_text)
+
+        ctx = {'posts': posts}
+        return render(request, template_name, ctx)
