@@ -318,3 +318,6 @@ secrets.json
 
 # private
 marcel-notes/
+
+# Visual Studio Code
+.vscode/
