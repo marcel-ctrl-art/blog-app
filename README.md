@@ -1,6 +1,6 @@
 # Blog app
 
-A simple django blog application that allows for creating, reading, updating & deleting posts.
+A simple django blog application that allows for creating, reading, updating, deleting & searching posts.
 
 Technologies used:
 * ```Python```
@@ -11,7 +11,7 @@ Technologies used:
 * ```CSS```
 * ```Bootstrap```
 * ```Postgresql```
-
+* ```JQuery```
 ## Installation/ Set up
 
 * Install pipenv using pip: `pip installl pipenv`
