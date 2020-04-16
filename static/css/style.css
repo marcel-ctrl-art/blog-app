@@ -34,3 +34,7 @@ header {
 .post-entry {
     margin-bottom: 2rem;
 }
+
+.search__results {
+  list-style: none;
+}
